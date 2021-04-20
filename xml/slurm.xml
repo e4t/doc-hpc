@@ -369,6 +369,15 @@ AccountingStorageHost=localhost</screen>
       possible to have a group hierarchy and users can be part of several
       groups.
      </para>
+     <note>
+      <para>
+      When using slurmdbd make sure a table for a cluster is added to the
+      database before slurmctld is started (or restart it afterwards).
+      Otherwise, no accounting information may be written to the database.
+      To add a cluster table, run: <command>sacctmgr -i add cluster
+      <replaceable>CLUSTERNAME</replaceable></command>.
+      </para>
+     </note>
      <para>
       To create an umbrella group <literal>bavaria</literal> for two subgroups
       called <literal>nuremberg</literal> and <literal>munich</literal> use
