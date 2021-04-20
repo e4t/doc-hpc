@@ -13,9 +13,9 @@
   <abstract>
    <para>
     <emphasis>Slurm</emphasis> is a workload manager for managing compute jobs
-    on high performance computing cluster. It can start multiple jobs on a
-    single node or a single job on multiple nodes. Additional components can be
-    used for advanced scheduling and accounting.
+    on high performance computing cluster. It is able to start multiple jobs
+    on a single node or a single job on multiple nodes. Additional components
+    can be used for advanced scheduling and accounting.
    </para>
 
    <para>
@@ -42,7 +42,7 @@
   <title>Slurm — utility for HPC workload management</title>
 
   <para>
-   For a minimal setup of <emphasis>Slurm</emphasis> with a controll node and
+   For a minimal setup of <emphasis>Slurm</emphasis> with a control node and
    multiple cmpute nodes, follow these instructions:
   </para>
 
@@ -69,23 +69,26 @@
      <systemitem class="username">slurm</systemitem> user/group as well.
     </para>
    </important>
+   <important>
+    <para>
+     It is strongly recommended that all compute nodes share common user
+     home directories. These should be provided thru network storage.
+    </para>
+   </important>
    <procedure>
-    <step>
-     <para>
-      It is strongly recommended that all compute nodes share a common home
-      directory.
-     </para>
-     <para>
-      Configure, enable and start <emphasis>munge</emphasis> on the control and
-      compute nodes as described in <xref linkend="sec-remote-munge"/>.
-     </para>
-    </step>
     <step>
      <para>
       Install <package>slurm-node</package> on the compute nodes with
       <command>zypper in slurm-node</command> and <package>slurm</package> on
-      the controll node with <command>zypper in slurm</command>. The package
-      <package>munge</package>will be installed as dependence automatically.
+      the control node with <command>zypper in slurm</command>. The package
+      <package>munge</package>will be installed automatically.
+     </para>
+    </step>
+    <step>
+     <para>
+      Configure, enable and start <emphasis>munge</emphasis> on the control and
+      compute nodes as described in <xref linkend="sec-remote-munge"/> - make
+      sure to share the same <literal>munge</literal>-key across all nodes.
      </para>
     </step>
    </procedure>
@@ -114,9 +117,11 @@
        </para>
 <screen>NodeName=<replaceable>NODE_LIST</replaceable>  State=UNKNOWN</screen>
        <para>
-        where the actual parameters like <literal>CPUs</literal> for compute
-        node can be obtained by running the following command on the compute
-        node:
+        This line allows to specify additional parameters of node like
+        <literal>Boards</literal>, <literal>SocketsPerBoard</literal>
+        <literal>CoresPerSocket</literal>, <literal>ThreadsPerCore</literal>
+        or <literal>CPU</literal> whose the actual values can be
+        obtained by running the following command on the compute node:
        </para>
 <screen>slurmd -C</screen>
        <para>
