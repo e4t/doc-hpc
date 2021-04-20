@@ -277,17 +277,17 @@ nodeattr [-f genders] -k
     the entire cluster.
    </para>
    <para>
-    <emphasis>Munge</emphasis> is installed by <command>zypper</command>
-    in munge'. This will install all packages required at runtime. A
+    <emphasis>Munge</emphasis> is installed by <command>zypper in
+    munge</command>. This will install further required packages. A separate
     'munge-devel' package is available to build applications that require
     munge authentication.
    </para>
    <para>
     When installing <emphasis>munge</emphasis> a new key is generated on
     every system. The <emphasis>munge</emphasis> key needs to be uniform
-    across the entire cluster, however. Therefore a key of one system
-    needs to be copied in a secure way to all other nodes in the cluster.
-    Care must be taken that the key is only readable by the
+    across the entire cluster, however. Therefore a key of one of the
+    systems needs to be copied in a secure way to all other nodes in
+    the cluster. Care must be taken that the key is only readable by the
     <emphasis>'munge'</emphasis> user (permissions mask
     <literal>0400</literal>).
    </para>
